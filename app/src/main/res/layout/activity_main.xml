@@ -13,4 +13,40 @@
     android:textAllCaps="false"
     tools:context="com.bryanrm.ftptransfer.MainActivity">
 
+    <TextView
+        android:text="@string/label_host"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:labelFor="@id/field_host"
+        android:id="@+id/label_host" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_below="@+id/label_host"
+        android:layout_alignParentStart="true"
+        android:id="@+id/field_host" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:layout_below="@+id/label_port"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/field_port"
+        android:layout_toEndOf="@+id/field_host" />
+
+    <TextView
+        android:text="@string/label_port"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/label_port"
+        android:labelFor="@id/field_port"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/field_host" />
 </RelativeLayout>
