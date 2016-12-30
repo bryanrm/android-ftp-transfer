@@ -1,11 +1,8 @@
 package com.adeel.library;
 
-import android.os.AsyncTask;
 import android.util.Log;
 
 import org.apache.commons.net.ftp.FTPClient;
-import org.apache.commons.net.ftp.FTPFile;
-import org.apache.commons.net.ftp.FTPReply;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -82,6 +79,27 @@ public class easyFTP {
             mFtpClient.disconnect();
         }catch (Exception e ){
             e.printStackTrace();
+        }
+    }
+
+    public void connect(String ip, int port, String userName, String pass) throws Exception {
+        boolean status = false;
+        try {
+            try {
+                mFtpClient.connect(ip, port);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            status = mFtpClient.login(userName, pass);
+            Log.e("isEasyFTPConnected", String.valueOf(status));
+        } catch (SocketException e) {
+            throw e;
+        }
+        catch (UnknownHostException e) {
+            throw e;
+        }
+        catch (IOException e) {
+            throw e;
         }
     }
 
