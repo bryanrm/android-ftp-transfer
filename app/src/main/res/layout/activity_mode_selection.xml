@@ -10,4 +10,24 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.bryanrm.ftptransfer.ModeSelectionActivity">
 
+    <Button
+        android:text="@string/button_mode_down"
+        android:onClick="downloadMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/button_mode_down"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="@string/button_mode_up"
+        android:onClick="uploadMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:id="@+id/button_mode_up"
+        android:layout_below="@+id/button_mode_down"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>

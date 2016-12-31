@@ -2,6 +2,8 @@
     <string name="app_name">FTP Transfer</string>
 
     <string name="button_connect">Connect</string>
+    <string name="button_mode_down">Download Mode</string>
+    <string name="button_mode_up">Upload Mode</string>
     <string name="button_download">Download File</string>
 
     <string name="default_port">21</string>
