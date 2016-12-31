@@ -82,7 +82,7 @@ public class easyFTP {
         }
     }
 
-    public void connect(String ip, int port, String userName, String pass) throws Exception {
+    public void connect(String ip, Integer port, String userName, String pass) throws Exception {
         boolean status = false;
         try {
             try {
