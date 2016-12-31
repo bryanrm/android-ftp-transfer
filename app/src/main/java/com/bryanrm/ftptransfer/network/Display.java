@@ -35,7 +35,7 @@ public class Display extends AsyncTask<Void, Void, Boolean> {
         if (result) {
             ArrayAdapter<String> arrayAdapter
                     = new ArrayAdapter<>(context.getApplicationContext(),
-                    android.R.layout.simple_list_item_1, listFiles);
+                    R.layout.modified_textview, listFiles);
             listView.setAdapter(arrayAdapter);
         } else {
             Toast.makeText(context.getApplicationContext(),
