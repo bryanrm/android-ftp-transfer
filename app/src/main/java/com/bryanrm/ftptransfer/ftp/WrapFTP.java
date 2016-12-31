@@ -2,6 +2,8 @@ package com.bryanrm.ftptransfer.ftp;
 
 import org.apache.commons.net.ftp.FTPClient;
 
+import java.io.IOException;
+
 /**
  * Created by Bryan R Martinez on 12/30/2016.
  */
@@ -43,14 +45,21 @@ public class WrapFTP {
         } catch (Exception e) { e.printStackTrace(); return false; }
     }
 
-    public void disconnect() {
-        try { ftpClient.disconnect();
-        } catch (Exception e) { }
+    public String[] listFiles() {
+        if (ftpClient.isConnected()) {
+            try { return ftpClient.listNames();
+            } catch (IOException e) { return null; }
+        } else return null;
     }
 
     public void downloadFile() {
         if (ftpClient.isConnected()) {
 
         }
+    }
+
+    public void disconnect() {
+        try { ftpClient.disconnect();
+        } catch (Exception e) { }
     }
 }
