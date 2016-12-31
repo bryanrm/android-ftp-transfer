@@ -5,6 +5,9 @@
     <string name="label_port">Port:</string>
     <string name="label_username">Username:</string>
     <string name="label_password">Password:</string>
+
     <string name="button_connect">Connect</string>
+
+    <string name="default_port">21</string>
 
 </resources>
