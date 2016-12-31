@@ -27,12 +27,15 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="411dp"
-            android:id="@+id/list_files" />
+            android:id="@+id/list_files"
+            android:choiceMode="singleChoice"
+            android:listSelector="@color/colorSelect"
+            android:layout_weight="0.81" />
 
         <Button
             android:text="@string/button_download"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="38dp"
             android:id="@+id/button_download" />
     </LinearLayout>
 </RelativeLayout>

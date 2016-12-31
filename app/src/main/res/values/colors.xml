@@ -2,4 +2,5 @@
 <resources>
     <color name="colorBackground">#fff</color>
     <color name="colorAccent">#00f</color>
+    <color name="colorSelect">#08f</color>
 </resources>
