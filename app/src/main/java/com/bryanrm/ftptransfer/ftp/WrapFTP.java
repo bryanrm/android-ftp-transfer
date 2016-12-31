@@ -26,7 +26,6 @@ public class WrapFTP {
                 return login(username, password);
             } catch (Exception e) { return false; }
         }
-
     }
 
     private boolean login(String username, String password) {
