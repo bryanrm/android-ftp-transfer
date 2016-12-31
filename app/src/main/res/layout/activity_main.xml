@@ -13,99 +13,109 @@
     android:textAllCaps="false"
     tools:context="com.bryanrm.ftptransfer.MainActivity">
 
-    <TextView
-        android:text="@string/label_host"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/label_host" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_below="@+id/label_host"
-        android:layout_alignParentStart="true"
-        android:id="@+id/field_host" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <EditText
-        android:text="@string/default_port"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:selectAllOnFocus="true"
-        android:layout_below="@+id/label_port"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/field_port"
-        android:layout_toEndOf="@+id/field_host" />
+            <TextView
+                android:text="@string/label_host"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/label_host" />
 
-    <TextView
-        android:text="@string/label_port"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/label_port"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/field_host" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:layout_below="@+id/label_host"
+                android:layout_alignParentStart="true"
+                android:id="@+id/field_host" />
 
-    <TextView
-        android:text="@string/label_username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/field_host"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="34dp"
-        android:id="@+id/label_username"
-        android:textSize="14sp" />
+            <EditText
+                android:text="@string/default_port"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:selectAllOnFocus="true"
+                android:layout_below="@+id/label_port"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/field_port"
+                android:layout_toEndOf="@+id/field_host" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_below="@+id/label_username"
-        android:layout_alignParentStart="true"
-        android:id="@+id/field_username"
-        android:layout_alignParentEnd="true" />
+            <TextView
+                android:text="@string/label_port"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/label_port"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/field_host" />
 
-    <TextView
-        android:text="@string/label_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/field_username"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="39dp"
-        android:id="@+id/label_password" />
+            <TextView
+                android:text="@string/label_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/field_host"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="34dp"
+                android:id="@+id/label_username"
+                android:textSize="14sp" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/field_password"
-        android:layout_below="@+id/label_password"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:layout_below="@+id/label_username"
+                android:layout_alignParentStart="true"
+                android:id="@+id/field_username"
+                android:layout_alignParentEnd="true" />
 
-    <Button
-        android:text="@string/button_connect"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/field_password"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="44dp"
-        android:id="@+id/button_connect"
-        android:onClick="connectPushed"
-        android:layout_alignParentEnd="true" />
+            <TextView
+                android:text="@string/label_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/field_username"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="39dp"
+                android:id="@+id/label_password" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/field_error"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/field_password"
+                android:layout_below="@+id/label_password"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true" />
 
+            <Button
+                android:text="@string/button_connect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/field_password"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="44dp"
+                android:id="@+id/button_connect"
+                android:onClick="connectPushed"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:id="@+id/field_error"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true" />
+
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>
