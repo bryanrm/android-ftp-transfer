@@ -17,9 +17,9 @@ public class Connect extends AsyncTask<String, Void, Integer> {
     private Context context;
     private WrapFTP wrapFtp;
 
-    public Connect(Context context, WrapFTP wrapFtp) {
+    public Connect(Context context) {
         this.context = context;
-        this.wrapFtp = wrapFtp;
+        this.wrapFtp = WrapFTP.getInstance();
     }
 
     @Override
@@ -35,7 +35,6 @@ public class Connect extends AsyncTask<String, Void, Integer> {
             case Constants.CONNECTION_SUCCESS:
                 Toast.makeText(context.getApplicationContext(),
                         context.getString(R.string.toast_success_connect),Toast.LENGTH_LONG).show();
-                wrapFtp.disconnect();
                 Intent intent
                         = new Intent(context.getApplicationContext(), ModeSelectionActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -47,6 +46,4 @@ public class Connect extends AsyncTask<String, Void, Integer> {
                 break;
         }
     }
-
-
 }

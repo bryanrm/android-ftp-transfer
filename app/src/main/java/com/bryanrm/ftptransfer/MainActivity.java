@@ -9,14 +9,13 @@ import com.bryanrm.ftptransfer.ftp.WrapFTP;
 import com.bryanrm.ftptransfer.network.Connect;
 
 public class MainActivity extends AppCompatActivity {
-    private WrapFTP wrapFtp;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        wrapFtp = new WrapFTP(Constants.FTP_TIMEOUT * Constants.S_MULTIPLIER);
+        WrapFTP wrapFtp = WrapFTP.getInstance();
+        wrapFtp.setTimeout(Constants.FTP_TIMEOUT * Constants.S_MULTIPLIER);
     }
 
     public void connectPushed(View view) {
@@ -24,7 +23,12 @@ public class MainActivity extends AppCompatActivity {
         String port = ((EditText) findViewById(R.id.field_port)).getText().toString();
         String username = ((EditText) findViewById(R.id.field_username)).getText().toString();
         String password = ((EditText) findViewById(R.id.field_password)).getText().toString();
-        new Connect(getApplicationContext(), wrapFtp).execute(host, port, username, password);
+        new Connect(getApplicationContext()).execute(host, port, username, password);
     }
 
+    @Override
+    public void onBackPressed() {
+        WrapFTP.getInstance().disconnect();
+        super.onBackPressed();
+    }
 }

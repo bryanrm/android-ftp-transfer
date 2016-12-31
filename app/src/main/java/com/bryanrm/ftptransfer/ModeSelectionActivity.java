@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.bryanrm.ftptransfer.ftp.WrapFTP;
+
 public class ModeSelectionActivity extends AppCompatActivity {
 
     @Override
@@ -20,5 +22,11 @@ public class ModeSelectionActivity extends AppCompatActivity {
 
     public void uploadMode(View view) {
         // TODO
+    }
+
+    @Override
+    public void onBackPressed() {
+        WrapFTP.getInstance().disconnect();
+        super.onBackPressed();
     }
 }

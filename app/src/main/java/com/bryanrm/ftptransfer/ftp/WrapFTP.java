@@ -6,10 +6,19 @@ import org.apache.commons.net.ftp.FTPClient;
  * Created by Bryan R Martinez on 12/30/2016.
  */
 public class WrapFTP {
-    private FTPClient ftpClient;
+    private static WrapFTP wrapFTP = null;
+    private static FTPClient ftpClient;
 
-    public WrapFTP(int timeout) {
+    private WrapFTP() {
         ftpClient = new FTPClient();
+    }
+
+    public static WrapFTP getInstance() {
+        if (wrapFTP == null) { wrapFTP = new WrapFTP(); }
+        return wrapFTP;
+    }
+
+    public void setTimeout(int timeout) {
         ftpClient.setConnectTimeout(timeout);
     }
 
@@ -37,5 +46,11 @@ public class WrapFTP {
     public void disconnect() {
         try { ftpClient.disconnect();
         } catch (Exception e) { }
+    }
+
+    public void downloadFile() {
+        if (ftpClient.isConnected()) {
+
+        }
     }
 }
