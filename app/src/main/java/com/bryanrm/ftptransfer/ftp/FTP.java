@@ -13,23 +13,30 @@ public class FTP {
         ftpClient.setConnectTimeout(timeout);
     }
 
-    public boolean connect(String host, String username, String password) {
-        try {
-            ftpClient.connect(host);
-            return login(username, password);
-        } catch (Exception e) { e.printStackTrace(); return false; }
-    }
+    public boolean connect(String host, String port, String username, String password) {
+        if (port.equals("") || port.equals("21")) {
+            try {
+                ftpClient.connect(host);
+                return login(username, password);
+            } catch (Exception e) { return false; }
+        } else {
+            Integer portNumber = Integer.parseInt(port);
+            try {
+                ftpClient.connect(host, portNumber);
+                return login(username, password);
+            } catch (Exception e) { return false; }
+        }
 
-    public boolean connect(String host, Integer port, String username, String password) {
-        try {
-            ftpClient.connect(host, port);
-            return login(username, password);
-        } catch (Exception e) { return false; }
     }
 
     private boolean login(String username, String password) {
         try {
             return ftpClient.login(username, password);
         } catch (Exception e) { e.printStackTrace(); return false; }
+    }
+
+    public void disconnect() {
+        try { ftpClient.disconnect();
+        } catch (Exception e) { }
     }
 }
