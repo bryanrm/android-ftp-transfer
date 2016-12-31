@@ -33,7 +33,7 @@ public class Connect extends AsyncTask<String, Void, Integer> {
             case Constants.CONNECTION_SUCCESS:
                 Toast.makeText(context.getApplicationContext(),
                         context.getString(R.string.toast_success_connect),Toast.LENGTH_LONG).show();
-                wrapFtp.disconnect();
+                
                 break;
             case Constants.CONNECTION_FAIL:
                 Toast.makeText(context.getApplicationContext(),
