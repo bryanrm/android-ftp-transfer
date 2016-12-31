@@ -12,6 +12,6 @@ public class FTP {
 
     public FTP() {
         ftpClient = new FTPClient();
-        ftpClient.setConnectTimeout(Constants.CONNECTION_TIMEOUT*Constants.TIMEOUT_MULTIPLIER);
+        ftpClient.setConnectTimeout(Constants.CONNECTION_TIMEOUT * 1000);
     }
 }
