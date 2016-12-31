@@ -36,6 +36,7 @@
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
+        android:selectAllOnFocus="true"
         android:layout_below="@+id/label_port"
         android:layout_alignParentEnd="true"
         android:id="@+id/field_port"
