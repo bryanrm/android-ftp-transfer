@@ -5,10 +5,10 @@ import org.apache.commons.net.ftp.FTPClient;
 /**
  * Created by Bryan R Martinez on 12/30/2016.
  */
-public class FTP {
+public class WrapFTP {
     private FTPClient ftpClient;
 
-    public FTP(int timeout) {
+    public WrapFTP(int timeout) {
         ftpClient = new FTPClient();
         ftpClient.setConnectTimeout(timeout);
     }

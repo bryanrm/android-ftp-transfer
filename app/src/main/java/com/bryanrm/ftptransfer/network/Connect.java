@@ -4,35 +4,43 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.bryanrm.ftptransfer.ftp.FTP;
-
-import java.util.Arrays;
+import com.bryanrm.ftptransfer.Constants;
+import com.bryanrm.ftptransfer.R;
+import com.bryanrm.ftptransfer.ftp.WrapFTP;
 
 /**
  * Created by Bryan R Martinez on 12/30/2016.
  */
-public class Connect extends AsyncTask<String, String, Void> {
+public class Connect extends AsyncTask<String, Void, Integer> {
     private Context context;
-    private FTP ftp;
+    private WrapFTP wrapFtp;
 
-    public Connect(Context context, int timeout) {
+    public Connect(Context context, WrapFTP wrapFtp) {
         this.context = context;
-        this.ftp = new FTP(timeout);
+        this.wrapFtp = wrapFtp;
     }
 
     @Override
-    protected Void doInBackground(String... params) {
-        if (ftp.connect(params[0], params[1], params[2], params[3])) {
-            publishProgress("Success");
-            ftp.disconnect();
+    protected Integer doInBackground(String... params) {
+        if (wrapFtp.connect(params[0], params[1], params[2], params[3]))
+            return Constants.CONNECTION_SUCCESS;
+        else return Constants.CONNECTION_FAIL;
+    }
+
+    @Override
+    protected void onPostExecute(Integer result) {
+        switch (result) {
+            case Constants.CONNECTION_SUCCESS:
+                Toast.makeText(context.getApplicationContext(),
+                        context.getString(R.string.toast_success_connect),Toast.LENGTH_LONG).show();
+                wrapFtp.disconnect();
+                break;
+            case Constants.CONNECTION_FAIL:
+                Toast.makeText(context.getApplicationContext(),
+                        context.getString(R.string.toast_fail_connect),Toast.LENGTH_LONG).show();
+                break;
         }
-        else
-            publishProgress("Failure");
-        return null;
     }
 
-    @Override
-    protected void onProgressUpdate(String... values) {
-        Toast.makeText(context.getApplicationContext(), Arrays.toString(values), Toast.LENGTH_LONG).show();
-    }
+
 }
