@@ -8,6 +8,6 @@ public class ModeSelectionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mode_selection2);
+        setContentView(R.layout.activity_mode_selection);
     }
 }
