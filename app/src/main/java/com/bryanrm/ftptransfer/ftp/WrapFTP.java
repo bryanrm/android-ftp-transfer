@@ -15,6 +15,7 @@ import java.io.OutputStream;
 public class WrapFTP {
     private static WrapFTP wrapFTP = null;
     private static FTPClient ftpClient;
+    private FTPFile selectedFile = null;
     private FTPFile[] files;
 
     private WrapFTP() {
@@ -84,12 +85,23 @@ public class WrapFTP {
         return files[position].getName();
     }
 
-    public boolean isFile(int position) {
-        return files[position].isFile();
-    }
+    public boolean isFile(int position) { return files[position].isFile(); }
 
     public boolean isDirectory(int position) {
         return files[position].isDirectory();
+    }
+
+    public String[] getSelectedFileInfo() {
+        String[] info = {selectedFile.getName(), String.valueOf(selectedFile.getSize())};
+        return info;
+    }
+
+    public void setSelectedFile(int position) {
+        selectedFile = files[position];
+    }
+
+    public void resetSelectedFile() {
+        selectedFile = null;
     }
 
     public boolean downloadFile(String remotePath, String destination) {

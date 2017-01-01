@@ -9,6 +9,7 @@
     <string name="default_port">21</string>
 
     <string name="message_no_files_found">No files found!</string>
+    <string name="message_invalid_file">Invalid file selected</string>
 
     <string name="label_host">Host:</string>
     <string name="label_port">Port:</string>

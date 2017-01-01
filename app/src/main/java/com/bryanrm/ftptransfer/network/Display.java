@@ -32,6 +32,7 @@ public class Display extends AsyncTask<Void, Void, Boolean> {
         String[] list = wrapFTP.listNames();
         if (list != null) {
             listFiles = new ArrayList<>(Arrays.asList(list));
+            listFiles.add(0, "..");
             return true;
         }
         return false;

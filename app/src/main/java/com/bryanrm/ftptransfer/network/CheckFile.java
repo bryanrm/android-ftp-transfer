@@ -6,6 +6,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.bryanrm.ftptransfer.Constants;
 import com.bryanrm.ftptransfer.R;
 import com.bryanrm.ftptransfer.ftp.WrapFTP;
 
@@ -15,7 +16,7 @@ import java.util.Arrays;
 /**
  * Created by Bryan R Martinez on 12/31/2016.
  */
-public class CheckFile extends AsyncTask<Integer, Void, Boolean> {
+public class CheckFile extends AsyncTask<Integer, Void, Integer> {
     private Context context;
     private ListView listView;
     private WrapFTP wrapFTP;
@@ -28,28 +29,62 @@ public class CheckFile extends AsyncTask<Integer, Void, Boolean> {
     }
 
     @Override
-    protected Boolean doInBackground(Integer... position) {
-        String selectedFile = wrapFTP.getFileAtPosition(position[0]);
-        System.out.println(selectedFile);
-        if (wrapFTP.isDirectory(position[0])) {
-            wrapFTP.updateDir(selectedFile);
+    protected Integer doInBackground(Integer... position) {
+        Integer pos = position[0]-1;
+        if (pos == -1) {
+            wrapFTP.stepBackDir();
+            wrapFTP.resetSelectedFile();
             String[] list = wrapFTP.listNames();
             if (list != null) {
                 listFiles = new ArrayList<>(Arrays.asList(list));
-                return true;
-            } return false;
-        } return false;
+                listFiles.add(0, "..");
+                return Constants.SELECTED_DIR;
+            } else {
+                listFiles = new ArrayList<>();
+                listFiles.add("..");
+                return Constants.SELECTED_DIR;
+            }
+        } else {
+            String selectedFile = wrapFTP.getFileAtPosition(pos);
+            if (wrapFTP.isDirectory(pos)) {
+                wrapFTP.updateDir(selectedFile);
+                wrapFTP.resetSelectedFile();
+                String[] list = wrapFTP.listNames();
+                if (list != null) {
+                    listFiles = new ArrayList<>(Arrays.asList(list));
+                    listFiles.add(0, "..");
+                    return Constants.SELECTED_DIR;
+                } else {
+                    listFiles = new ArrayList<>();
+                    listFiles.add("..");
+                    return Constants.SELECTED_DIR;
+                }
+            } else if (wrapFTP.isFile(pos)) {
+                wrapFTP.setSelectedFile(pos);
+                return Constants.SELECTED_FILE;
+            }
+            else {
+                wrapFTP.resetSelectedFile();
+                return Constants.SELECTED_UNKNOWN;
+            }
+        }
     }
 
     @Override
-    protected void onPostExecute(Boolean result) {
-        if (result) {
-            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(context.getApplicationContext(),
-                    R.layout.modified_textview, listFiles);
-            listView.setAdapter(arrayAdapter);
-        } else {
-            Toast.makeText(context.getApplicationContext(),
-                    context.getString(R.string.message_no_files_found), Toast.LENGTH_LONG).show();
+    protected void onPostExecute(Integer result) {
+        switch (result) {
+            case Constants.SELECTED_DIR:
+                ArrayAdapter<String> arrayAdapter =
+                        new ArrayAdapter<>(context.getApplicationContext(),
+                        R.layout.modified_textview, listFiles);
+                listView.setAdapter(arrayAdapter);
+                break;
+            case Constants.SELECTED_UNKNOWN:
+                Toast.makeText(context.getApplicationContext(),
+                       context.getString(R.string.message_invalid_file), Toast.LENGTH_SHORT).show();
+            case Constants.SELECTED_FILE:
+            default:
+                break;
         }
     }
 }
