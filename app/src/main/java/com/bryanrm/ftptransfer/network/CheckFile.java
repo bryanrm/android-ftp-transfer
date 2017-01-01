@@ -15,33 +15,36 @@ import java.util.Arrays;
 /**
  * Created by Bryan R Martinez on 12/31/2016.
  */
-public class Display extends AsyncTask<Void, Void, Boolean> {
+public class CheckFile extends AsyncTask<Integer, Void, Boolean> {
     private Context context;
-    private WrapFTP wrapFTP;
     private ListView listView;
+    private WrapFTP wrapFTP;
     private ArrayList<String> listFiles;
 
-    public Display(Context context, ListView listView) {
+    public CheckFile(Context context, ListView listView) {
         this.context = context;
-        this.wrapFTP = WrapFTP.getInstance();
         this.listView = listView;
+        this.wrapFTP = WrapFTP.getInstance();
     }
 
     @Override
-    protected Boolean doInBackground(Void... params) {
-        String[] list = wrapFTP.listNames();
-        if (list != null) {
-            listFiles = new ArrayList<>(Arrays.asList(list));
-            return true;
-        }
-        return false;
+    protected Boolean doInBackground(Integer... position) {
+        String selectedFile = wrapFTP.getFileAtPosition(position[0]);
+        System.out.println(selectedFile);
+        if (wrapFTP.isDirectory(position[0])) {
+            wrapFTP.updateDir(selectedFile);
+            String[] list = wrapFTP.listNames();
+            if (list != null) {
+                listFiles = new ArrayList<>(Arrays.asList(list));
+                return true;
+            } return false;
+        } return false;
     }
 
     @Override
     protected void onPostExecute(Boolean result) {
         if (result) {
-            ArrayAdapter<String> arrayAdapter
-                    = new ArrayAdapter<>(context.getApplicationContext(),
+            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(context.getApplicationContext(),
                     R.layout.modified_textview, listFiles);
             listView.setAdapter(arrayAdapter);
         } else {
