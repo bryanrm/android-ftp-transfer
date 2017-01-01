@@ -91,29 +91,28 @@ public class WrapFTP {
         return files[position].isDirectory();
     }
 
-    public String[] getSelectedFileInfo() {
-        String[] info = {selectedFile.getName(), String.valueOf(selectedFile.getSize())};
-        return info;
+    public String getSelectedFileName() {
+        return (selectedFile != null) ? selectedFile.getName() : "";
     }
 
-    public void setSelectedFile(int position) {
-        selectedFile = files[position];
-    }
+    public void setSelectedFile(int position) { selectedFile = files[position]; }
 
-    public void resetSelectedFile() {
-        selectedFile = null;
-    }
+    public void resetSelectedFile() { selectedFile = null; }
 
-    public boolean downloadFile(String remotePath, String destination) {
+    public boolean downloadFile(String destination) {
         if (ftpClient.isConnected()) {
             File file = new File(destination);
+            if (!file.exists())
+                try {
+                    file.createNewFile();
+                } catch (IOException e) { return false; }
             File dir = file.getParentFile();
-            if (!dir.exists()) dir.mkdir();
+            if (!dir.exists()) dir.mkdirs();
             OutputStream outputStream = null;
             try {
                 outputStream = new BufferedOutputStream(new FileOutputStream(file));
                 ftpClient.setFileType(FTPClient.BINARY_FILE_TYPE);
-                ftpClient.retrieveFile(remotePath, outputStream);
+                ftpClient.retrieveFile(selectedFile.getName(), outputStream);
             } catch (IOException e) { return false; }
             finally {
                 if (outputStream != null) {

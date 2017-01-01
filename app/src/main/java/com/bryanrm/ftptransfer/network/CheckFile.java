@@ -3,6 +3,7 @@ package com.bryanrm.ftptransfer.network;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -19,13 +20,17 @@ import java.util.Arrays;
 public class CheckFile extends AsyncTask<Integer, Void, Integer> {
     private Context context;
     private ListView listView;
+    private Button downloadButton;
     private WrapFTP wrapFTP;
     private ArrayList<String> listFiles;
 
-    public CheckFile(Context context, ListView listView) {
+    public CheckFile(Context context, ListView listView, Button downloadButton) {
         this.context = context;
         this.listView = listView;
+        this.downloadButton = downloadButton;
         this.wrapFTP = WrapFTP.getInstance();
+
+        downloadButton.setEnabled(false);
     }
 
     @Override
@@ -74,15 +79,18 @@ public class CheckFile extends AsyncTask<Integer, Void, Integer> {
     protected void onPostExecute(Integer result) {
         switch (result) {
             case Constants.SELECTED_DIR:
+                downloadButton.setEnabled(false);
                 ArrayAdapter<String> arrayAdapter =
                         new ArrayAdapter<>(context.getApplicationContext(),
                         R.layout.modified_textview, listFiles);
                 listView.setAdapter(arrayAdapter);
                 break;
             case Constants.SELECTED_UNKNOWN:
+                downloadButton.setEnabled(false);
                 Toast.makeText(context.getApplicationContext(),
                        context.getString(R.string.message_invalid_file), Toast.LENGTH_SHORT).show();
             case Constants.SELECTED_FILE:
+                downloadButton.setEnabled(true);
             default:
                 break;
         }
