@@ -5,6 +5,8 @@
     <string name="button_mode_down">Download Mode</string>
     <string name="button_mode_up">Upload Mode</string>
     <string name="button_download">Download File</string>
+    <string name="button_select_file">Select File</string>
+    <string name="button_upload">Upload File</string>
 
     <string name="default_port">21</string>
 
