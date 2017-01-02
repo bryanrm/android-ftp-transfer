@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".DownloadActivity" />
-        <activity android:name=".ModeSelectionActivity"></activity>
+        <activity android:name=".ModeSelectionActivity" />
+        <activity android:name=".UploadActivity"></activity>
     </application>
 
 </manifest>
