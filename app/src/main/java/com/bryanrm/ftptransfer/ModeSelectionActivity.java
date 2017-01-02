@@ -21,7 +21,8 @@ public class ModeSelectionActivity extends AppCompatActivity {
     }
 
     public void uploadMode(View view) {
-        // TODO
+        Intent intent = new Intent(this, UploadActivity.class);
+        startActivity(intent);
     }
 
     @Override

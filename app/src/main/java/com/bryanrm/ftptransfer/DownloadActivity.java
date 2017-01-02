@@ -20,7 +20,7 @@ import com.bryanrm.ftptransfer.network.Display;
 import com.bryanrm.ftptransfer.network.Download;
 
 public class DownloadActivity extends AppCompatActivity {
-    public static final int WRITE_EXTERNAL_STORAGE = 1;
+    private static final int WRITE_EXTERNAL_STORAGE = 1;
     public final Activity activity = this;
 
     @Override
