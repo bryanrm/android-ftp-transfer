@@ -79,14 +79,16 @@ public class CheckFile extends AsyncTask<Integer, Void, Integer> {
     protected void onPostExecute(Integer result) {
         switch (result) {
             case Constants.SELECTED_DIR:
-                downloadButton.setEnabled(false);
+                if (downloadButton.isEnabled())
+                    downloadButton.setEnabled(false);
                 ArrayAdapter<String> arrayAdapter =
                         new ArrayAdapter<>(context.getApplicationContext(),
                         R.layout.modified_textview, listFiles);
                 listView.setAdapter(arrayAdapter);
                 break;
             case Constants.SELECTED_UNKNOWN:
-                downloadButton.setEnabled(false);
+                if (downloadButton.isEnabled())
+                    downloadButton.setEnabled(false);
                 Toast.makeText(context.getApplicationContext(),
                        context.getString(R.string.message_invalid_file), Toast.LENGTH_SHORT).show();
                 break;
