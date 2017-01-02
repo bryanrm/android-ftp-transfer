@@ -125,6 +125,10 @@ public class WrapFTP {
         } else return false;
     }
 
+    public boolean uploadFile(String filename) {
+        return true;
+    }
+
     public void disconnect() {
         try { ftpClient.disconnect();
         } catch (Exception e) { }

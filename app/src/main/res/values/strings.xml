@@ -24,6 +24,7 @@
     <string name="label_username">Username:</string>
     <string name="label_password">Password:</string>
     <string name="label_download">Select File:</string>
+    <string name="label_upload">Select Directory:</string>
 
     <string name="toast_success_connect">Connected!</string>
     <string name="toast_fail_connect">Connection failed</string>
