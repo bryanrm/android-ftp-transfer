@@ -93,7 +93,8 @@ public class CheckFile extends AsyncTask<Integer, Void, Integer> {
                        context.getString(R.string.message_invalid_file), Toast.LENGTH_SHORT).show();
                 break;
             case Constants.SELECTED_FILE:
-                downloadButton.setEnabled(true);
+                if (!downloadButton.isEnabled())
+                    downloadButton.setEnabled(true);
                 break;
             default:
                 break;
