@@ -1,5 +1,6 @@
 package com.bryanrm.ftptransfer.ftp;
 
+import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 
@@ -7,6 +8,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 
 /**
@@ -140,8 +142,17 @@ public class WrapFTP {
         } else return false;
     }
 
-    public boolean uploadFile(String filename) {
-        return true;
+    public boolean uploadFile(String fileName, InputStream inputStream) {
+        if (ftpClient.isConnected()) {
+            try {
+                ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+                ftpClient.storeUniqueFile(fileName, inputStream);
+                try {
+                    inputStream.close();
+                    return true;
+                } catch (IOException e) { return true; }
+            } catch (IOException e) { return false; }
+        } else return false;
     }
 
     public void disconnect() {

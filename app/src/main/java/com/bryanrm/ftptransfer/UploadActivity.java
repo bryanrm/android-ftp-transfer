@@ -18,6 +18,10 @@ import android.widget.Toast;
 
 import com.bryanrm.ftptransfer.network.CheckDirectory;
 import com.bryanrm.ftptransfer.network.DisplayDirectory;
+import com.bryanrm.ftptransfer.network.Upload;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class UploadActivity extends AppCompatActivity {
     private static final int READ_EXTERNAL_STORAGE = 1;
@@ -40,6 +44,11 @@ public class UploadActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (uri != null) {
                     //TODO upload to server
+                    try {
+                        String fileName = getFileName(uri.getPath());
+                        InputStream inputStream = getContentResolver().openInputStream(uri);
+                        new Upload(getApplicationContext(), fileName, inputStream).execute();
+                    } catch (IOException e) { }
                 }
             }
         });
@@ -96,5 +105,9 @@ public class UploadActivity extends AppCompatActivity {
                         getString(R.string.message_invalid_file), Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    private String getFileName(String path) {
+        return path.substring(path.lastIndexOf("/")+1);
     }
 }

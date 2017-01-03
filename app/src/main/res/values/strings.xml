@@ -17,8 +17,11 @@
     <string name="message_write_permission_denied">Write permission denied</string>
     <string name="message_read_permission_denied">Read permission denied</string>
     <string name="message_file_not_saved">Unable to download file</string>
+    <string name="message_file_not_uploaded">Unable to upload file</string>
     <string name="message_file_dl_start">File download started - be patient</string>
+    <string name="message_file_ul_start">File upload started - be patient</string>
     <string name="message_file_saved">File saved to:</string>
+    <string name="message_file_uploaded">File successfully uploaded</string>
 
     <string name="label_host">Host:</string>
     <string name="label_port">Port:</string>
