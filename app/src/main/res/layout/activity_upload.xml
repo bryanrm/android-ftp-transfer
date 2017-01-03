@@ -12,20 +12,21 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true" >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:weightSum="10">
+            android:weightSum="10" >
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:id="@+id/label_select_directory"
                 android:text="@string/label_upload"
-                android:layout_weight="1" />
+                android:layout_weight=".5" />
 
             <ListView
                 android:layout_width="match_parent"
@@ -33,20 +34,20 @@
                 android:id="@+id/list_dirs"
                 android:choiceMode="singleChoice"
                 android:listSelector="@color/colorSelect"
-                android:layout_weight="7" />
+                android:layout_weight="7.5" />
 
             <Button
                 android:text="@string/button_select_file"
                 android:onClick="selectFile"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:id="@+id/button_select_file"
                 android:layout_weight="1" />
 
             <Button
                 android:text="@string/button_upload"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:id="@+id/button_upload"
                 android:layout_weight="1" />
         </LinearLayout>
