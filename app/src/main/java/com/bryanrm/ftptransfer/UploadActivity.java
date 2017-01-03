@@ -11,12 +11,17 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
+
+import com.bryanrm.ftptransfer.network.DisplayDirectory;
 
 public class UploadActivity extends AppCompatActivity {
     private static final int READ_EXTERNAL_STORAGE = 1;
     private static final int SELECT_FILE = 2;
+    private ListView listView;
     private Button uploadButton;
     private Uri uri;
 
@@ -25,7 +30,9 @@ public class UploadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
 
+        listView = (ListView) findViewById(R.id.list_dirs);
         uploadButton = (Button)findViewById(R.id.button_upload);
+
         uploadButton.setEnabled(false);
         uploadButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,6 +40,13 @@ public class UploadActivity extends AppCompatActivity {
                 if (uri != null) {
                     //TODO upload to server
                 }
+            }
+        });
+        new DisplayDirectory(getApplicationContext(), listView).execute();
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //new CheckFile(getApplicationContext(), listView, button).execute(position);
             }
         });
     }

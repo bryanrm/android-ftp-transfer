@@ -11,6 +11,7 @@
     <string name="default_port">21</string>
 
     <string name="message_no_files_found">No files found!</string>
+    <string name="message_no_dirs_found">No directories found!</string>
     <string name="message_invalid_file">Invalid file selected</string>
     <string name="message_no_external_storage">Unable to locate external storage</string>
     <string name="message_write_permission_denied">Write permission denied</string>

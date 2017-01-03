@@ -17,6 +17,7 @@ public class WrapFTP {
     private static FTPClient ftpClient;
     private FTPFile selectedFile = null;
     private FTPFile[] files;
+    private String[] dirs;
 
     private WrapFTP() {
         ftpClient = new FTPClient();
@@ -62,6 +63,20 @@ public class WrapFTP {
         try {
             ftpClient.changeWorkingDirectory(dir);
         } catch (IOException e) { }
+    }
+
+    public String[] listDirectories() {
+        if (ftpClient.isConnected()) {
+            try {
+                FTPFile[] dir = ftpClient.listDirectories();
+                if (dir != null) {
+                    dirs = new String[dir.length];
+                    for (int i = 0; i < dir.length; i++)
+                        dirs[i] = dir[i].getName();
+                    return dirs;
+                }
+            } catch (IOException e) { return null; }
+        } return null;
     }
 
     public String[] listNames() {
