@@ -64,7 +64,7 @@ public class UploadActivity extends AppCompatActivity {
         Intent fileChooser = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         fileChooser.addCategory(Intent.CATEGORY_OPENABLE);
         fileChooser.setType("*/*");
-        startActivityForResult(fileChooser, READ_EXTERNAL_STORAGE);
+        startActivityForResult(fileChooser, SELECT_FILE);
     }
 
     @Override
@@ -88,7 +88,7 @@ public class UploadActivity extends AppCompatActivity {
         if (requestCode == SELECT_FILE && resultCode == Activity.RESULT_OK) {
             if (data != null) {
                 uri = data.getData();
-                if (uploadButton.isEnabled()) { uploadButton.setEnabled(true); }
+                if (!uploadButton.isEnabled()) { uploadButton.setEnabled(true); }
             } else {
                 Toast.makeText(this,
                         getString(R.string.message_invalid_file), Toast.LENGTH_LONG).show();
