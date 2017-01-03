@@ -7,7 +7,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.bryanrm.ftptransfer.Constants;
 import com.bryanrm.ftptransfer.R;
 import com.bryanrm.ftptransfer.ftp.WrapFTP;
 
@@ -18,6 +17,10 @@ import java.util.Arrays;
  * Created by Bryan R Martinez on 12/31/2016.
  */
 public class CheckFile extends AsyncTask<Integer, Void, Integer> {
+    private static final int SELECTED_DIR = 1;
+    private static final int SELECTED_FILE = 2;
+    private static final int SELECTED_UNKNOWN = 3;
+
     private Context context;
     private ListView listView;
     private Button downloadButton;
@@ -43,11 +46,11 @@ public class CheckFile extends AsyncTask<Integer, Void, Integer> {
             if (list != null) {
                 listFiles = new ArrayList<>(Arrays.asList(list));
                 listFiles.add(0, "..");
-                return Constants.SELECTED_DIR;
+                return SELECTED_DIR;
             } else {
                 listFiles = new ArrayList<>();
                 listFiles.add("..");
-                return Constants.SELECTED_DIR;
+                return SELECTED_DIR;
             }
         } else {
             String selectedFile = wrapFTP.getFileAtPosition(pos);
@@ -58,19 +61,19 @@ public class CheckFile extends AsyncTask<Integer, Void, Integer> {
                 if (list != null) {
                     listFiles = new ArrayList<>(Arrays.asList(list));
                     listFiles.add(0, "..");
-                    return Constants.SELECTED_DIR;
+                    return SELECTED_DIR;
                 } else {
                     listFiles = new ArrayList<>();
                     listFiles.add("..");
-                    return Constants.SELECTED_DIR;
+                    return SELECTED_DIR;
                 }
             } else if (wrapFTP.isFile(pos)) {
                 wrapFTP.setSelectedFile(pos);
-                return Constants.SELECTED_FILE;
+                return SELECTED_FILE;
             }
             else {
                 wrapFTP.resetSelectedFile();
-                return Constants.SELECTED_UNKNOWN;
+                return SELECTED_UNKNOWN;
             }
         }
     }
@@ -78,7 +81,7 @@ public class CheckFile extends AsyncTask<Integer, Void, Integer> {
     @Override
     protected void onPostExecute(Integer result) {
         switch (result) {
-            case Constants.SELECTED_DIR:
+            case SELECTED_DIR:
                 if (downloadButton.isEnabled())
                     downloadButton.setEnabled(false);
                 ArrayAdapter<String> arrayAdapter =
@@ -86,13 +89,13 @@ public class CheckFile extends AsyncTask<Integer, Void, Integer> {
                         R.layout.modified_textview, listFiles);
                 listView.setAdapter(arrayAdapter);
                 break;
-            case Constants.SELECTED_UNKNOWN:
+            case SELECTED_UNKNOWN:
                 if (downloadButton.isEnabled())
                     downloadButton.setEnabled(false);
                 Toast.makeText(context.getApplicationContext(),
                        context.getString(R.string.message_invalid_file), Toast.LENGTH_SHORT).show();
                 break;
-            case Constants.SELECTED_FILE:
+            case SELECTED_FILE:
                 if (!downloadButton.isEnabled())
                     downloadButton.setEnabled(true);
                 break;

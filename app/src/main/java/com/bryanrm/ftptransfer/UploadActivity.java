@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.bryanrm.ftptransfer.network.CheckDirectory;
 import com.bryanrm.ftptransfer.network.DisplayDirectory;
 
 public class UploadActivity extends AppCompatActivity {
@@ -46,7 +47,8 @@ public class UploadActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //new CheckFile(getApplicationContext(), listView, button).execute(position);
+                Object item = listView.getItemAtPosition(position);
+                new CheckDirectory(getApplicationContext(), listView).execute(item.toString());
             }
         });
     }
