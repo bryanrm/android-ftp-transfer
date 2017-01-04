@@ -32,8 +32,6 @@ public class CheckFile extends AsyncTask<Integer, Void, Integer> {
         this.listView = listView;
         this.downloadButton = downloadButton;
         this.wrapFTP = WrapFTP.getInstance();
-
-        downloadButton.setEnabled(false);
     }
 
     @Override
